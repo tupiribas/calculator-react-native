@@ -7,38 +7,58 @@ export default function App() {
   const [telaCalculo, setTelaCalculo] = useState("");
   const [telaResposta, setTelaResposta] = useState("");
 
+  function verificaValor(valor, operador) {
+    if (valor == " ") {
+      return valor = 0;
+    }
+    else {
+      return valor = parseFloat(valor);
+    }
+  }
+
   function pressionarTeclaNumerica(botao) {
     setTelaCalculo(telaCalculo+botao);
   }
 
   function calcular(calculo) {
     if (calculo.includes("+")) {
+      var soma, valor0, valor1;
       var arrayCalculo = calculo.split("+", 2);
-      let valor0 = parseFloat(arrayCalculo[0]);
-      let valor1 = parseFloat(arrayCalculo[1]);
-      var soma = valor0 + valor1; 
-      setTelaResposta(telaCalculo + " = " + soma);
+
+      valor0 = verificaValor(arrayCalculo[0], "+");
+      valor1 = verificaValor(arrayCalculo[1], "+");
+
+      soma = valor0 + valor1;
+      setTelaResposta(valor0 + " + " + valor1 + " = " + soma);
     }
     else if (calculo.includes("-")) {
+      var subtracao, valor0, valor1;
       var arrayCalculo = calculo.split("-", 2);
-      let valor0 = parseFloat(arrayCalculo[0]);
-      let valor1 = parseFloat(arrayCalculo[1]);
-      var subtracao = valor0 - valor1; 
-      setTelaResposta(telaCalculo + " = " + subtracao);
+
+      valor0 = verificaValor(arrayCalculo[0], "-");
+      valor1 = verificaValor(arrayCalculo[1], "-");
+      subtracao = valor0 - valor1; 
+      setTelaResposta(valor0 + " - " + valor1 + " = " + subtracao);
     }
     else if (calculo.includes("x")) {
+      var multiplicacao, valor0, valor1;
       var arrayCalculo = calculo.split("x", 2);
-      let valor0 = parseFloat(arrayCalculo[0]);
-      let valor1 = parseFloat(arrayCalculo[1]);
-      var multiplicacao = valor0 * valor1; 
-      setTelaResposta(telaCalculo + " = " + multiplicacao);
+
+      valor0 = verificaValor(arrayCalculo[0], "-");
+      valor1 = verificaValor(arrayCalculo[1], "-");
+
+      multiplicacao = valor0 * valor1; 
+      setTelaResposta(valor0 + " x " + valor1 + " = " + multiplicacao);
     }
     else if (calculo.includes("/")) {
+      var divisao, valor0, valor1;
       var arrayCalculo = calculo.split("/", 2);
-      let valor0 = parseFloat(arrayCalculo[0]);
-      let valor1 = parseFloat(arrayCalculo[1]);
-      var divisao = valor0 / valor1; 
-      setTelaResposta(telaCalculo + " = " + divisao);
+
+      valor0 = verificaValor(arrayCalculo[0], "/");
+      valor1 = verificaValor(arrayCalculo[1], "/");
+
+      divisao = valor0 / valor1; 
+      setTelaResposta(valor0 + " / " + valor1 + " = " + divisao);
     }
   }
 
